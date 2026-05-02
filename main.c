@@ -95,9 +95,6 @@ void graphics(){
 	}
 	SetPolyF4(&background_poly);
 	addPrim(&ot[SQUARE_NB+1], &background_poly);
-	
-	
-	
 }
 
 void display() {
@@ -108,12 +105,10 @@ void display() {
 	setRGB0(&selector_poly, selector.sprite.red, selector.sprite.green, selector.sprite.blue);
 	setXY4(&selector_poly, selector.sprite.x0, selector.sprite.y0, selector.sprite.x1, selector.sprite.y1, selector.sprite.x2, selector.sprite.y2, selector.sprite.x3, selector.sprite.y3);
 	
-	
 	for(i=0; i<SQUARE_NB_X; i++){
 		for(j=0; j<SQUARE_NB_Y; j++){
 			setRGB0(&f4[i][j],cells[i][j].red,cells[i][j].green,cells[i][j].blue);
 			setXY4(&f4[i][j],cells[i][j].x0,cells[i][j].y0,cells[i][j].x1,cells[i][j].y1,cells[i][j].x2,cells[i][j].y2,cells[i][j].x3,cells[i][j].y3);
-	
 		}	
 	}
 	
@@ -207,6 +202,7 @@ unsigned short voisin(unsigned short x, unsigned short y){
 	}
 	return nb_voisin;
 }
+
 void calc(){
 	unsigned short i;
 	unsigned short j;
@@ -231,7 +227,6 @@ void calc(){
 			if(state[i][j]==DEAD && nb_voisin==3){
 				temp[i][j]=LIVE;
 			}
-			
 		}
 	}
 	for(i=0; i<SQUARE_NB_X; i++){
@@ -240,9 +235,8 @@ void calc(){
 			selector_field[i][j] = state[i][j];
 		}
 	}
-	
-	
 }
+
 void draw(){
 	unsigned short i;
 	unsigned short j;
@@ -266,6 +260,7 @@ void draw(){
 		updateColorSQUARE(&background, 255, 255, 0);
 	}
 }
+
 void pad_read(){
 	int padd = PadRead(1);
 	
@@ -288,7 +283,6 @@ void pad_read(){
 			padL1Down=0;
 		}
 	}
-	
 	if(stepMode==1){
 		direction_step(padd);
 	}
@@ -510,6 +504,7 @@ void direction_step(int padd){
 		}
 	}
 }
+
 void init(){
 	unsigned short i;
 	unsigned short j;
@@ -523,9 +518,9 @@ void init(){
 	SendVAGToRAM(SWAP_ENDIAN32(VAGhdr->dataSize));
 
 	SetVoiceAttr(pitch);
-
 	
 	graphics();
+	
 	for(i=0; i<SQUARE_NB_X; i++){
 		for(j=0;j<SQUARE_NB_Y; j++){
 			initSQUARE(&cells[i][j], SQUARE_SIZE);
