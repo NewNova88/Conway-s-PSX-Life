@@ -47,10 +47,12 @@ int main(){
 	init();
 	PlaySFX();
 	while(1){
+		current_frame++;
 		pad_read();
 		if(isPaused==0){
 			calc();
 		}
+		FntPrint("fps : %d\n", fps);
 		draw();
 		display();
 	}
@@ -124,8 +126,14 @@ void display() {
 	GsClearOt(0,0,&myOT[CurrentBuffer]);
 	
 	DrawSync(0);
+
+	if(VSync(-1) >= next_second){
+		fps=current_frame;
+		current_frame=0;
+		next_second = VSync(-1) + 60;
+	}
 	
-	VSync(0);
+	VSync(0); //keeps VSync on for 60FPS
 	
 	GsSwapDispBuff();
 	
@@ -514,6 +522,8 @@ void init(){
 	PadInit(0);
 	SpuInit();
 	InitMusicSystem();
+	FntLoad(960,256);
+	SetDumpFnt(FntOpen(5,20,SCREEN_WIDTH,SCREEN_HEIGHT,0,512));
 	
 	SendVAGToRAM(SWAP_ENDIAN32(VAGhdr->dataSize));
 

@@ -37,6 +37,9 @@ SQUARE background;
 SELECTOR selector;
 
 unsigned long ot[SQUARE_NB+2];
+unsigned int next_second=0;
+unsigned int current_frame=0;
+unsigned short fps=0;
 
 int isPaused=1;
 int stepMode=0;
