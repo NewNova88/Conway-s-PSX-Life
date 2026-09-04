@@ -9,3 +9,5 @@ To compile it yourself you need at least Psy-Q SDK version 4.4.
 It should compile under SN Systems ProDG for PlayStation if the assembler allows the datafile.asm changes.
 
 Originally presented at Revision 2024 Demoparty Game Compo category.
+
+The added FPS Counter feature does not have a proper ISO release (yet)
